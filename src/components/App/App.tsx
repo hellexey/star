@@ -1,32 +1,48 @@
-import React, { useState } from 'react'
-interface Person {
-  name: string
-  height: string
-  mass: string
+import React from 'react'
+
+import './index.css'
+import Header from '../Header/Header'
+import SwapiService from '../servises/SwapiService'
+
+interface IPerson {
+  [key: string]: string
 }
 const App: React.FC = () => {
-  const [data, setData] = useState<Person | null>(null)
+  const swapi = new SwapiService()
 
-  const getResource = async (url: string) => {
-    const res = await fetch(url)
-    const data = await res.json()
-    setData(data)
-  }
+  swapi.getAllPeople().then((people) => {
+    people.forEach((person: IPerson) => {
+      console.log(person.name)
+    })
+  })
 
-  const handleClick = () => {
-    getResource('https://swapi.dev/api/people/1')
-  }
+  swapi.getPerson(1).then((person) => {
+    console.log(person)
+  })
+
+  swapi.getAllPlanets().then((planets) => {
+    planets.forEach((planet: IPerson) => {
+      console.log(planet.name)
+    })
+  })
+
+  swapi.getPlanet(1).then((planet) => {
+    console.log(planet)
+  })
+
+  swapi.getAllStarships().then((starships) => {
+    starships.forEach((starship: IPerson) => {
+      console.log(starship.name)
+    })
+  })
+
+  swapi.getStarship(3).then((starship) => {
+    console.log(starship)
+  })
 
   return (
     <div>
-      <button onClick={handleClick}>Fetch</button>
-      {data && (
-        <div>
-          <p>Name: {data.name}</p>
-          <p>Height: {data.height}</p>
-          <p>Mass: {data.mass}</p>
-        </div>
-      )}
+      <Header />
     </div>
   )
 }
