@@ -1,1 +1,3 @@
-import React from 'react'
+import ItemList from './Item-list'
+
+export default ItemList

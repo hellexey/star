@@ -1,12 +1,16 @@
 import React from 'react'
 
 import './index.css'
-import Header from '../Header/Header'
+import Header from '../Header'
+import RandomPlanet from '../Random-planet'
+import ItemList from '../Item-list'
+import Details from '../Details'
 import SwapiService from '../servises/SwapiService'
 
 interface IPerson {
   [key: string]: string
 }
+
 const App: React.FC = () => {
   const swapi = new SwapiService()
 
@@ -43,6 +47,15 @@ const App: React.FC = () => {
   return (
     <div>
       <Header />
+      <RandomPlanet />
+      <div className="row mb2">
+        <div className="col-md-6">
+          <ItemList />
+        </div>
+        <div className="col-md-6">
+          <Details />
+        </div>
+      </div>
     </div>
   )
 }

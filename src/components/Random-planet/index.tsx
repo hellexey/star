@@ -1,1 +1,3 @@
-import React from 'react'
+import RandomPlanet from './Random-planet'
+
+export default RandomPlanet
